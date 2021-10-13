@@ -93,6 +93,14 @@ docker run -d --name wp --rm network red1 -e WORDPRESS_DB_HOST=mysql_wp WORDPRES
 docker network rm red1
 
 
+--- Crear un volumen en un contenedor
+cd /var/lib/docker
+cd volumes
+docker run -it -v /datos --name ubuntu1 ubuntu bash
+
+
+
+
 
 
 
