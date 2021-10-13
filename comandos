@@ -1,0 +1,22 @@
+--- Arrancar y parar docker
+dockerd
+systemctl start dockerd
+systemctl enable docker
+systemctl status dockerd
+systemctl stop dokcerd
+
+--- arrancar un contenedor
+docker --version
+docker info
+docker run hello-world 
+
+-- ver imagenes y contenedores
+docker --help
+docker images --> muestra imagenes en local
+docker ps --> muestra los contenedores arrancados
+docker ps -a --> ver todos los contenedores
+docker ps -l -n 4-->nos muestra los ultimos contenedores sobre los cuales se han realizado acciones
+dockre ps -a ps -q --> muestra id de los contenedores
+
+
+
