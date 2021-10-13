@@ -44,7 +44,22 @@ docker pull python
 docker logs {{CONTAINER_ID}}
 docker kill {{CONTAINER_ID}}
 
+--- docker top y docker stats
+docker top {{CONTAINER_ID}}
+docker stats {{CONTAINER_ID}}
 
+--- docker inspect
+docker inspect {{CONTAINER_ID}}
+docker inspect {{CONTAINER_ID}} > container1.txt
+
+--- Gestionar puertos para acceder al contenedor
+docker run -d -P nginx
+docker run -d --name nginx2 -p 8080:80 nginx
+
+--- Redes en docker 
+docker network ls
+docker inspect {{NAMES}} | grep IPaddress
+docker network inspect bridge
 
 
 
