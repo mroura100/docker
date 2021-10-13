@@ -33,6 +33,9 @@ docker rm {{NAMES}}
 docker rmi {{CONTAINER_ID}}  --> borra imagenes
 docker rmi {{NAMES}}
 
+--- eliminar todos los contenedores
+docker rm `docker ps -aq`
+
 --- docker exec
 docker run -it --name mi_ubuntu ubuntu bash
 docker exec mi_ubuntu echo hola
@@ -58,8 +61,37 @@ docker run -d --name nginx2 -p 8080:80 nginx
 
 --- Redes en docker 
 docker network ls
-docker inspect {{NAMES}} | grep IPaddress
+docker inspect {{NAMES}} | grep IPAddress
 docker network inspect bridge
+
+--- crear una nueva red
+docker network create red1
+docker network create --subnet=192.168.0.0/16 red2 
+
+--- asociar contenedores en una red
+docker run -it --name ubuntu1 --network red1 ubuntu
+docker run -d --name nginx3 --network red1 nginx
+
+docker network connect red2 ubuntu1 --> añade el contenedor ubuntu1 a la red2 y mantiene la que ya tenía
+docker network disconnect red2 ubuntu1 --> quita el contenedor ubuntu1 de la red2
+
+--- enlazar contenedores con --link
+docker  run -it --rm --name b1 busybox
+docker  run -it --rm --name b2 busybox
+
+docker  run -it --rm --name b3 --link b1:maquina1 busybox -->con este comando enlazamos contenedores
+
+--- enlazar contenedores con redes personalizadas
+docker run -d --name mysql_server --rm network red1 -e MYSQL_ROOT_PASSWORD=secret mysql
+docker run -d --name mysql_client --rm network red1 mysql bash
+
+--- enlazar contenedores wordpress y mysql
+docker run -d --name mysql_wp --rm network red1 -e MYSQL_ROOT_PASSWORD=secret mysql
+docker run -d --name wp --rm network red1 -e WORDPRESS_DB_HOST=mysql_wp WORDPRESS_DB_PASSWORD=secret -p 8080:80 wordpress
+
+--- borrar red
+docker network rm red1
+
 
 
 
