@@ -12,11 +12,43 @@ docker run hello-world
 
 -- ver imagenes y contenedores
 docker --help
+docker images --help
 docker images --> muestra imagenes en local
+docker images -q
 docker ps --> muestra los contenedores arrancados
 docker ps -a --> ver todos los contenedores
 docker ps -l -n 4-->nos muestra los ultimos contenedores sobre los cuales se han realizado acciones
 dockre ps -a ps -q --> muestra id de los contenedores
 
+--- crear un contendedor interactivo
+docker run -it ubuntu 
+docker start -i {{id_contenedor}} --> entrar modo interactivo
 
+--- crear un contendedor en background
+docker run -d nginx 
+
+--- borrar imagenes y contenedores
+docker rm {{CONTAINER_ID}} --> borra contenedores
+docker rm {{NAMES}}
+docker rmi {{CONTAINER_ID}}  --> borra imagenes
+docker rmi {{NAMES}}
+
+--- docker exec
+docker run -it --name mi_ubuntu ubuntu bash
+docker exec mi_ubuntu echo hola
+
+--- descargar solo la imagen
+docker pull python
+
+--- docker logs y docker kill
+docker logs {{CONTAINER_ID}}
+docker kill {{CONTAINER_ID}}
+
+
+
+
+
+
+
+ 
 
