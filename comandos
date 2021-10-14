@@ -113,6 +113,26 @@ cd /var/lib/docker/volumes
 docker run -it -v /datos --name ubuntu1 ubuntu bash
 docker run -it --name ubuntu5 --volumes-from-ubuntu1 ubuntu bash
 
+--- Crear un volumen independiente
+docker volume create vol1
+docker run -it -v /vol1:/datos --name ubuntu1 ubuntu
+docker run -it -v /vol1:/datos:ro --name ubuntu1 ubuntu --> read only
+
+--- borrar un volumen
+docker volume rm {{volume_name}}
+docker volume prune
+
+--- modificar un contenedor
+docker run -it --name ubuntu1 ubuntu bash
+docker diff ubuntu1 --> muestra diferencias con la imagen original
+
+--- docker commit.Crear una imagen manualmente
+docker commit ubuntu1 mi_imagen_ubuntu
+docker images --> vemos la imagen nueva creada
+docker run -it --name ubuntu_custom mi_imagen_ubuntu bash
+
+
+--- dockerfile
 
 
 
