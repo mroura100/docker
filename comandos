@@ -98,7 +98,20 @@ cd /var/lib/docker
 cd volumes
 docker run -it -v /datos --name ubuntu1 ubuntu bash
 
+--- ver volumenes
+docker volume ls
+docker volume inspect {{VOLUME_NAME}}
 
+--- Crear un directorio compartido con el host
+mkdir /root/dir1
+docker run -it -v /root/dir1:/datos --name ubuntu1 ubuntu
+docker volume ls --> no aparece el volumen pq lo trata como un bind
+docker inspect ubuntu1
+
+--- Compartir volumenes entre contenedores
+cd /var/lib/docker/volumes
+docker run -it -v /datos --name ubuntu1 ubuntu bash
+docker run -it --name ubuntu5 --volumes-from-ubuntu1 ubuntu bash
 
 
 
