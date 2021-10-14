@@ -188,6 +188,22 @@ docker image history imagen_python
 docker login
 docker image tag ubuntu3:v7 mroura10/ubuntu3:v7
 docker push mroura10/ubuntu3:v7
+docker pull mroura10/ubuntu3:v7
+
+--- Integración continua.Conectar dockerhub y github de forma automática
+creamos repositorio en github imagen_python
+cd imagen_python
+git init
+git add *
+git commit -m "first commit"
+git status
+git remote add origin {{nuestra ur}}
+git push -u origin master
+
+##vamos adockerhub
+create-->create automated build-->link to github-->public and privated(recommended)
+
+--- Docker compose
 
 
 
