@@ -171,6 +171,9 @@ RUN /datos1/add_user.sh
 RUN apt-get install -y apache2
 EXPOSE 80
 ADD entrypoint.sh /datos1 --> el script entrypoint.sh inicia el servicio apache2
+##VOLUME
+ADD paginas /var/www/html
+VOLUME ["/var/www/html"]
 CMD ["/datos1/entrypoint.sh"]
 ##CMD ["/bin/bash"]
 ##ENTRYPOINT ["/bin/bash"]
@@ -180,6 +183,12 @@ docker build -t imagen_python:latest .
 
 --- ver historial de una imagen
 docker image history imagen_python
+
+--- subir imagenes a docker hub
+docker login
+docker image tag ubuntu3:v7 mroura10/ubuntu3:v7
+docker push mroura10/ubuntu3:v7
+
 
 
 
