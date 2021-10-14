@@ -133,7 +133,25 @@ docker run -it --name ubuntu_custom mi_imagen_ubuntu bash
 
 
 --- dockerfile
+--- crear una imagen desde un dockerfile
+mkdir imagen_python
+cd imagen_python
+vi Dockerfile
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y python
+RUN echo 1.0 >> /etc/version && apt-get install -y git \
+    && apt-get install -y iputils-ping
+CMD ["echo","Welcome to this container"]
+--- construir una imagen
+docker build -t imagen_python:latest .
 
+--- ver historial de una imagen
+docker image history imagen_python
+
+
+
+ 
 
 
 
