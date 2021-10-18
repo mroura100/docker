@@ -309,6 +309,74 @@ volumes:
   mydata:
   dbdata:
   
+  
+-- Redes en docker-compose
+version: '3.3'
+
+services:
+  app:
+    image: client
+    container_name: client
+    build: .
+    ports: 
+      - 80:3000
+    environment:
+      - MONGO_URI=mongodb://mongo_db/sample
+    depends_on: 
+      - db
+    networks: 
+      - net3
+  db:
+    image: mongo:3.0.15
+    container_name: mongo_db
+    volumes:
+      - ./db:/data/db
+    networks:
+      net3:
+        aliases:
+          - "mongo_db"
+        ipv4_address: 172.16.238.10
+        ipv6_address: 2001:3984:3989::10
+networks:
+  net3:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.16.238.0/24
+      -
+        subnet: 2001:3984:3989::/64
+        
+-- Docker swarm
+docker swarm
+docker service
+
+-- iniciar nuevo cluster (manager)
+docker swarm init --advertise-addr {{ip_host}}
+
+
+-- añadir un worker
+docker swarm join --token {{id_token}}
+##comando para sacar el id del token 
+docker swarm join-token worker
+
+-- comandos docker swarm
+-- trabajar con un cluster de docker
+docker node
+docker node ls
+docker node inspect --pretty nodo2
+
+-- convertir un worker en un manager
+docker node promote nodo3 --> lo deja en estado recheable
+docker node demote nodo1 --> quitamos el nodo1 del worker, el lider ahora es el nodo3
+
+
+
+
+
+
+  
  
 
 
