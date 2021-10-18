@@ -375,6 +375,15 @@ docker node demote nodo1 --> quitamos el nodo1 del worker, el lider ahora es el 
 docker swarm leave --> deja el nodo en DOWN
 docker rm nodo3 --> deja el nodo
 
+-- Crear y trabajar con servicios
+docker service
+docker service create --replicas 1 --name servicio1 alpine ping docker.com
+docker service ls
+docker service ps servicio1
+docker service logs servicio1
+
+-- Escalar un servicio
+docker service scale servicio1=3
 
 
 
