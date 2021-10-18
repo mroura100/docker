@@ -371,6 +371,11 @@ docker node inspect --pretty nodo2
 docker node promote nodo3 --> lo deja en estado recheable
 docker node demote nodo1 --> quitamos el nodo1 del worker, el lider ahora es el nodo3
 
+-- quitar un nodo del cluster
+docker swarm leave --> deja el nodo en DOWN
+docker rm nodo3 --> deja el nodo
+
+
 
 
 
