@@ -273,7 +273,45 @@ docker-compose images
 docker-compose stop
 docker compose config
 docker-compose start
+docker-compose restart
+docker-compose pause
+docker-compose unpause
+docker-compose rm
+docker-compose logs {{container_name}}
+docker-compose config --services
+docker-compose exec {{container_name}} sh
+docker-compose down ##LO BORRA TODO
+
+
+-- volumenes en docker-compose
+version: "3.2"
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: mydata
+        target: /data
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./static
+        target: /opt/app/static
+    ports:
+      - 80:80
+  db:
+    image: postgres:latest
+    volumes:
+      - "/var/run/postgres/postgres.sock:/var/run/postgres/postgres.sock"
+      - "dbdata:/var/lib/postgresql/data"
+
+volumes:
+  mydata:
+  dbdata:
+  
  
+
+
 
 
 
