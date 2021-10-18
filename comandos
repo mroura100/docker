@@ -382,10 +382,11 @@ docker service ls
 docker service ps servicio1
 docker service logs servicio1
 
--- Escalar un servicio
+-- Escalar un servicio, podemos bajar o subir replicas
 docker service scale servicio1=3
 
-
+-- Borrar un servicio
+docker service rm servicio1
 
 
 
